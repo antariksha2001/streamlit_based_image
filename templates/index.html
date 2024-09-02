@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Similarity Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Image Similarity Search</h1>
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <label for="uploaded_image">Upload an image:</label>
+            <input type="file" id="uploaded_image" name="uploaded_image" accept="image/*">
+            <button type="submit">Search</button>
+        </form>
+
+        {% if similarities %}
+        <h2>Similarity Scores:</h2>
+        <ul>
+            {% for label, score in similarities.items() %}
+            <li>{{ label }}: {{ score|round(4) }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
